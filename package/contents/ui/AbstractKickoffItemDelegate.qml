@@ -69,7 +69,7 @@ T.ItemDelegate {
 
         let actions = Array.from(model.actionList);
         const favoriteActions = Tools.createFavoriteActions(
-            i18n, //i18n() function callback
+            i18n, //i18nd("plasma_applet_org.kde.plasma.kickoff", ) function callback
             root.view.model.favoritesModel,
             model.favoriteId,
         );

@@ -113,7 +113,7 @@ EmptyPage {
             }
         ]
 
-        Accessible.description: i18nc("@info:whatsthis Accessible description", "Grid with %1 rows, %2 columns", rows, columns) // can't use i18np here
+        Accessible.description: i18ndc("plasma_applet_org.kde.plasma.kickoff", "@info:whatsthis Accessible description", "Grid with %1 rows, %2 columns", rows, columns) // can't use i18np here
 
 
         implicitWidth: {

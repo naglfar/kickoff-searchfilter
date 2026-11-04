@@ -117,13 +117,13 @@ AbstractKickoffItemDelegate {
             active: (root.model?.isNewlyInstalled ?? false) && !root.removalPlaceholderActive
 
             sourceComponent: Kirigami.Badge {
-                text: root.isCategoryListItem ? "" : i18nc("Newly-installed app, badge, keep short", "New!")
+                text: root.isCategoryListItem ? "" : i18ndc("plasma_applet_org.kde.plasma.kickoff", "Newly-installed app, badge, keep short", "New!")
 
                 type: Kirigami.Badge.Type.Positive
 
                 Accessible.description: root.isCategoryListItem
-                    ? i18n("There is a newly-installed application in this category")
-                    : i18n("Newly-installed application")
+                    ? i18nd("plasma_applet_org.kde.plasma.kickoff", "There is a newly-installed application in this category")
+                    : i18nd("plasma_applet_org.kde.plasma.kickoff", "Newly-installed application")
             }
         }
     }
