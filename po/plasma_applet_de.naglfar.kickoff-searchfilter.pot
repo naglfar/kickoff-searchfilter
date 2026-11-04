@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the kickoff-searchfilter package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: kickoff-searchfilter\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-04 19:07+0100\n"
+"POT-Creation-Date: 2026-11-04 19:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: package/contents/ui/ConfigSearch.qml:92
+#: package/contents/ui/ConfigSearch.qml:119
 msgctxt "@option:radio"
 msgid "Use the plugins and order from Plasma Search"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:99
+#: package/contents/ui/ConfigSearch.qml:126
 msgctxt "@option:radio"
 msgid "Use only the selected plugins, in this order"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:109
+#: package/contents/ui/ConfigSearch.qml:136
 msgctxt "@info"
 msgid ""
 "Results of the first plugin are shown first. Plugins disabled in Plasma "
@@ -35,42 +35,54 @@ msgid ""
 "apply everywhere."
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:124
+#: package/contents/ui/ConfigSearch.qml:143
+msgctxt "@info"
+msgid ""
+"All selected plugins are disabled in Plasma Search. The launcher then "
+"searches with all plugins enabled there."
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:160
 msgctxt "@info"
 msgid "No search plugins found"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:124
+#: package/contents/ui/ConfigSearch.qml:160
 msgctxt "@info"
 msgid "Loading search plugins…"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:162
+#: package/contents/ui/ConfigSearch.qml:198
 msgctxt "@info %1 is a plugin id"
 msgid "%1 (not installed)"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:174
+#: package/contents/ui/ConfigSearch.qml:199
+msgctxt "@info %1 is a plugin id"
+msgid "%1 (disabled in Plasma Search)"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:212
 msgctxt "@action:button"
 msgid "Move Up"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:175
+#: package/contents/ui/ConfigSearch.qml:213
 msgctxt "@action:button %1 is a plugin name"
 msgid "Move %1 up"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:187
+#: package/contents/ui/ConfigSearch.qml:225
 msgctxt "@action:button"
 msgid "Move Down"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:188
+#: package/contents/ui/ConfigSearch.qml:226
 msgctxt "@action:button %1 is a plugin name"
 msgid "Move %1 down"
 msgstr ""
 
-#: package/contents/ui/ConfigSearch.qml:202
+#: package/contents/ui/ConfigSearch.qml:240
 msgctxt "@action:button opens the Plasma Search settings"
 msgid "Configure Search Plugins…"
 msgstr ""

@@ -25,6 +25,10 @@ KCM.ScrollViewKCM {
     // [{id, name}] of the installed KRunner plugins, sorted by name
     property var installedRunners: []
     property bool runnersLoaded: false
+    // Plugins switched off in Plasma Search; plugins that are off by default without being switched off are not known here
+    property var disabledRunners: []
+    // RunnerModel falls back to all enabled plugins when none of the selected ones is enabled
+    readonly property bool allSelectedDisabled: customSelection && cfg_searchRunners.every(id => disabledRunners.includes(id))
 
     function runnerName(id) {
         const runner = installedRunners.find(r => r.id === id);
@@ -38,10 +42,11 @@ KCM.ScrollViewKCM {
             name: runnerName(id),
             selected: true,
             installed: installedRunners.some(r => r.id === id),
+            disabled: disabledRunners.includes(id),
         }));
         const others = installedRunners
             .filter(r => !cfg_searchRunners.includes(r.id))
-            .map(r => ({ id: r.id, name: r.name, selected: false, installed: true }));
+            .map(r => ({ id: r.id, name: r.name, selected: false, installed: true, disabled: disabledRunners.includes(r.id) }));
         return selected.concat(others);
     }
 
@@ -81,6 +86,28 @@ KCM.ScrollViewKCM {
             root.installedRunners = runners;
             root.runnersLoaded = true;
             disconnectSource(source);
+            enabledStates.read(runners.map(r => r.id));
+        }
+    }
+
+    // Read the switches from Plasma Search, the same keys KRunner uses
+    P5Support.DataSource {
+        id: enabledStates
+        engine: "executable"
+
+        function read(ids) {
+            // Plugin ids are plain identifiers; skip anything else rather than passing it to a shell
+            const safeIds = ids.filter(id => /^[A-Za-z0-9_.-]+$/.test(id));
+            if (safeIds.length > 0) {
+                connectSource(`for id in ${safeIds.join(" ")}; do printf '%s=%s\\n' "$id" "$(kreadconfig6 --file krunnerrc --group Plugins --key "\${id}Enabled")"; done`);
+            }
+        }
+
+        onNewData: (source, data) => {
+            root.disabledRunners = String(data["stdout"]).split("\n")
+                .filter(line => line.endsWith("=false"))
+                .map(line => line.slice(0, -"=false".length));
+            disconnectSource(source);
         }
     }
 
@@ -107,6 +134,13 @@ KCM.ScrollViewKCM {
             wrapMode: Text.WordWrap
             textFormat: Text.PlainText
             text: i18nc("@info", "Results of the first plugin are shown first. Plugins disabled in Plasma Search are not used, even when selected here. The settings of each plugin apply everywhere.")
+        }
+
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
+            visible: root.allSelectedDisabled
+            type: Kirigami.MessageType.Warning
+            text: i18nc("@info", "All selected plugins are disabled in Plasma Search. The launcher then searches with all plugins enabled there.")
         }
     }
 
@@ -161,7 +195,9 @@ KCM.ScrollViewKCM {
                     }
                     QQC2.Label {
                         Layout.fillWidth: true
-                        text: delegate.modelData.installed ? delegate.modelData.id : i18nc("@info %1 is a plugin id", "%1 (not installed)", delegate.modelData.id)
+                        text: !delegate.modelData.installed ? i18nc("@info %1 is a plugin id", "%1 (not installed)", delegate.modelData.id)
+                            : delegate.modelData.disabled ? i18nc("@info %1 is a plugin id", "%1 (disabled in Plasma Search)", delegate.modelData.id)
+                            : delegate.modelData.id
                         elide: Text.ElideRight
                         font: Kirigami.Theme.smallFont
                         opacity: 0.7
