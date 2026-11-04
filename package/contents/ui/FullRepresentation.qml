@@ -140,7 +140,7 @@ EmptyPage {
 
                         iconName: "edit-none"
                         opacity: 0
-                        text: i18nc("@info:status", "No matches")
+                        text: i18ndc("plasma_applet_org.kde.plasma.kickoff", "@info:status", "No matches")
 
                         Connections {
                             target: kickoff.runnerModel

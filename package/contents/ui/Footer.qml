@@ -98,7 +98,7 @@ PlasmaExtras.PlasmoidHeading {
             icon.width: Kirigami.Units.iconSizes.smallMedium
             icon.height: Kirigami.Units.iconSizes.smallMedium
             icon.name: "applications-all-symbolic"
-            text: i18nc("@title:tab kickoff sidebar tab", "Applications")
+            text: i18ndc("plasma_applet_org.kde.plasma.kickoff", "@title:tab kickoff sidebar tab", "Applications")
             Keys.onBacktabPressed: event => {
                 (kickoff.lastCentralPane || nextItemInFocusChain(false))
                     .forceActiveFocus(Qt.BacktabFocusReason)
@@ -114,7 +114,7 @@ PlasmaExtras.PlasmoidHeading {
             icon.width: Kirigami.Units.iconSizes.smallMedium
             icon.height: Kirigami.Units.iconSizes.smallMedium
             icon.name: "compass"
-            text: i18nc("@title:tab kickoff sidebar tab", "Places") //Explore?
+            text: i18ndc("plasma_applet_org.kde.plasma.kickoff", "@title:tab kickoff sidebar tab", "Places") //Explore?
         }
 
         Connections {
