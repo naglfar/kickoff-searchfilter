@@ -1,0 +1,2 @@
+# The fork has its own id, name and authors; upstream changes to these files are not wanted
+package/metadata.json merge=ours
