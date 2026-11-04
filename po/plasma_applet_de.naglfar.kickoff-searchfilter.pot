@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the kickoff-searchfilter package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: kickoff-searchfilter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-04 19:07+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: package/contents/ui/ConfigSearch.qml:92
+msgctxt "@option:radio"
+msgid "Use the plugins and order from Plasma Search"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:99
+msgctxt "@option:radio"
+msgid "Use only the selected plugins, in this order"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:109
+msgctxt "@info"
+msgid ""
+"Results of the first plugin are shown first. Plugins disabled in Plasma "
+"Search are not used, even when selected here. The settings of each plugin "
+"apply everywhere."
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:124
+msgctxt "@info"
+msgid "No search plugins found"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:124
+msgctxt "@info"
+msgid "Loading search plugins…"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:162
+msgctxt "@info %1 is a plugin id"
+msgid "%1 (not installed)"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:174
+msgctxt "@action:button"
+msgid "Move Up"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:175
+msgctxt "@action:button %1 is a plugin name"
+msgid "Move %1 up"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:187
+msgctxt "@action:button"
+msgid "Move Down"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:188
+msgctxt "@action:button %1 is a plugin name"
+msgid "Move %1 down"
+msgstr ""
+
+#: package/contents/ui/ConfigSearch.qml:202
+msgctxt "@action:button opens the Plasma Search settings"
+msgid "Configure Search Plugins…"
+msgstr ""
+
+#: package/contents/config/config.qml:18
+msgctxt "@title:group for configuration dialog page"
+msgid "Search"
+msgstr ""
