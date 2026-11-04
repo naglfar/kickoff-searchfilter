@@ -73,5 +73,9 @@
             <label>Whether to highlight newly-installed applications</label>
             <default>true</default>
         </entry>
+        <entry name="searchRunners" type="StringList">
+            <label>KRunner plugin ids used for searching, in the order their results are shown. Empty means the plugins and order configured in Plasma Search.</label>
+            <default></default>
+        </entry>
     </group>
 </kcfg>

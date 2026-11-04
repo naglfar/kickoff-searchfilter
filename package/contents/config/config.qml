@@ -14,4 +14,9 @@ PlasmaConfig.ConfigModel {
         icon: "preferences-desktop-plasma"
         source: "ConfigGeneral.qml"
     }
+    PlasmaConfig.ConfigCategory {
+        name: i18nc("@title:group for configuration dialog page", "Search")
+        icon: "search"
+        source: "ConfigSearch.qml"
+    }
 }

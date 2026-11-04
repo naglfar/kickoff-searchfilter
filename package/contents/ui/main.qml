@@ -91,6 +91,47 @@ PlasmoidItem {
         appletInterface: kickoff
         mergeResults: true
         favoritesModel: kickoff.rootModel.favoritesModel
+        // Empty means all plugins enabled in Plasma Search. Plugins disabled there are left out either way.
+        runners: Plasmoid.configuration.searchRunners
+
+        // The search model is created on the first query, before the query starts
+        onQueryChanged: kickoff.applySearchOrder()
+    }
+
+    // With an own plugin selection, its order replaces the favorites from Plasma Search.
+    // RunnerModel has no property for this, so set it on its search model directly and
+    // set it again whenever RunnerModel restores the global favorites.
+    function applySearchOrder() {
+        const order = Plasmoid.configuration.searchRunners;
+        const model = runnerModel.modelForRow(0);
+        if (order.length === 0 || !model || String(model.favoriteIds) === String(order)) {
+            return;
+        }
+        model.favoriteIds = order;
+    }
+    Connections {
+        target: Plasmoid.configuration
+        function onValueChanged(key, value) {
+            if (key !== "searchRunners") {
+                return;
+            }
+            if (value.length > 0) {
+                kickoff.applySearchOrder();
+            } else if (kickoff.runnerModel.count > 0) {
+                // Back to the Plasma Search settings: RunnerModel only reads the global favorites
+                // when creating its search model or when they change, so have it create a new one
+                kickoff.runnerModel.mergeResults = false;
+                kickoff.runnerModel.mergeResults = true;
+            }
+        }
+    }
+    Connections {
+        // count changes when the search model gets created
+        target: kickoff.runnerModel.count > 0 ? kickoff.runnerModel.modelForRow(0) : null
+        ignoreUnknownSignals: true
+        function onFavoriteIdsChanged() {
+            kickoff.applySearchOrder();
+        }
     }
 
     readonly property Kicker.ComputerModel computerModel: Kicker.ComputerModel {

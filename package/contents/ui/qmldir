@@ -4,6 +4,7 @@ singleton ActionMenu 1.0 ActionMenu.qml
 ApplicationsPage 1.0 ApplicationsPage.qml
 BasePage 1.0 BasePage.qml
 ConfigGeneral 1.0 ConfigGeneral.qml
+ConfigSearch 1.0 ConfigSearch.qml
 DropAreaGridView 1.0 DropAreaGridView.qml
 DropAreaListView 1.0 DropAreaListView.qml
 EmptyPage 1.0 EmptyPage.qml
