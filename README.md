@@ -53,17 +53,62 @@ kpackagetool6 -t Plasma/Applet -r de.naglfar.kickoff-searchfilter
 ./build.sh
 ```
 
-## History
+## Updating to a new Kickoff version
 
-1. `Import Kickoff from plasma-desktop v6.8.2` is the unmodified original, only moved into the package layout.
-2. `Make it a standalone applet package` changes the id, adds a qmldir and reuses Kickoff's translations.
-3. Then come the search changes.
+The fork is a copy without a connection to plasma-desktop. New Kickoff versions come in through the `upstream` branch.
 
-Compare with the original:
+- **`upstream`** only contains Kickoff as released by KDE, converted mechanically into the package layout by `tools/convert-kickoff.py`. The conversion moves files, switches `i18n()` to Kickoff's installed catalog and writes the `qmldir`.
+- **`main`** is `upstream` plus the changes of this fork.
+
+Show exactly what the fork changes:
 
 ```bash
-git diff 4a17665 -- package
+git diff upstream main -- package
 ```
+
+Once per clone, enable the merge driver that keeps the fork's `metadata.json`:
+
+```bash
+git config merge.ours.driver true
+```
+
+Update to a new Plasma version, for example 6.9.0, from a plasma-desktop checkout that has the tag:
+
+1. Import it as a commit on `upstream`. The checkout of `main` is not touched.
+
+   ```bash
+   ./update-upstream.sh v6.9.0
+   ```
+
+2. Merge it.
+
+   ```bash
+   git merge upstream
+   ```
+
+3. Resolve conflicts, if any. They can only appear where KDE changed lines that the fork changed too: the runner model block in `main.qml`, `main.xml`, `config.qml` or `qmldir`.
+4. Test against that Plasma version, raise `Version` in `metadata.json`, then run `./build.sh`.
+
+To try an update without changing `upstream`, branch it first:
+
+```bash
+git branch try-upstream upstream
+```
+
+```bash
+UPSTREAM_BRANCH=try-upstream ./update-upstream.sh v6.9.0
+```
+
+Before updating, check what changed:
+
+- `git log <old-tag>..<new-tag> -- applets/kickoff` in plasma-desktop for Kickoff itself
+- `applets/kicker/runnermodel.*` in plasma-workspace, which provides `runners`, `mergeResults` and the search model whose `favoriteIds` this fork sets
+
+A newer Kickoff may need APIs that older Plasma versions lack. If older versions still have to work, stay on the Kickoff version of the oldest supported Plasma and take over fixes selectively, or publish a separate version per Plasma release and set `X-Plasma-API-Minimum-Version` accordingly.
+
+### Tried once
+
+An update from Kickoff 6.7.0 to 6.8.2 (18 upstream commits, 19 files) merged without conflicts. The result was identical to the fork on 6.8.2.
 
 ## License
 
