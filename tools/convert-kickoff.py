@@ -6,7 +6,9 @@ Turns applets/kickoff from plasma-desktop into the layout of an applet package.
 Only mechanical changes, so that every import on the upstream branch can be
 reproduced and merged into main:
 - QML and code/ go to contents/ui/, main.xml and config.qml to contents/config/
-- i18n*() calls use Kickoff's installed catalog through i18nd*()
+- i18n*() calls use Kickoff's installed catalog through i18nd*(); JavaScript
+  libraries (.pragma library) can't call i18n*() themselves and get i18n passed
+  in, so that argument is bound to the catalog instead
 - a qmldir lists the types, which the compiled original registers in CMake
 
 Usage: convert-kickoff.py <applets/kickoff directory> <package directory>
@@ -21,6 +23,8 @@ import sys
 DOMAIN = "plasma_applet_org.kde.plasma.kickoff"
 I18N_CALL = re.compile(r"\bi18n(c|p|cp)?\(")
 I18ND = {"": "i18nd(", "c": "i18ndc(", "p": "i18ndp(", "cp": "i18ndcp("}
+# i18n passed as a function argument, e.g. Tools.createFavoriteActions(i18n, ...)
+I18N_ARGUMENT = re.compile(r"\bi18n(?=\s*,)")
 
 
 def singletons(cmake):
@@ -60,7 +64,11 @@ def main(source, package):
             path = os.path.join(root, name)
             with open(path, encoding="utf-8") as f:
                 text = f.read()
+            if name.endswith(".js") and ".pragma library" in text:
+                # Calls here go to the i18n parameter, not to the global functions
+                continue
             converted = I18N_CALL.sub(lambda m: I18ND[m.group(1) or ""] + f'"{DOMAIN}", ', text)
+            converted = I18N_ARGUMENT.sub(f'(...args) => i18nd("{DOMAIN}", ...args)', converted)
             if converted != text:
                 with open(path, "w", encoding="utf-8") as f:
                     f.write(converted)
