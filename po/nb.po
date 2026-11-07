@@ -1,0 +1,55 @@
+# Norwegian Bokmal translations for kickoff-searchfilter package.
+# Copyright (C) 2026 THE kickoff-searchfilter'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the kickoff-searchfilter package.
+#
+# "Not installed" is taken from the translation of KDE Discover.
+# The option and info texts were translated without a native speaker's review, using KDE's terms for "Plasma Search" and "plugin"; corrections are welcome.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kickoff-searchfilter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-07 07:31+0100\n"
+"PO-Revision-Date: 2026-11-07 07:31+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: package/contents/ui/ConfigSearch.qml:119
+msgctxt "@option:radio"
+msgid "Use the plugins and order from Plasma Search"
+msgstr "Bruk tillegg og rekkefølge fra Plasma-søk"
+
+#: package/contents/ui/ConfigSearch.qml:126
+msgctxt "@option:radio"
+msgid "Use only the selected plugins, in this order"
+msgstr "Bruk bare de valgte tilleggene, i denne rekkefølgen"
+
+#: package/contents/ui/ConfigSearch.qml:136
+msgctxt "@info"
+msgid ""
+"Results of the first plugin are shown first. Plugins disabled in Plasma "
+"Search are not used, even when selected here. The settings of each plugin "
+"apply everywhere."
+msgstr ""
+"Resultater fra det første tillegget vises først. Tillegg som er slått av i "
+"Plasma-søk, brukes ikke, selv om de er valgt her. Innstillingene for hvert "
+"tillegg gjelder overalt."
+
+#: package/contents/ui/ConfigSearch.qml:143
+msgctxt "@info"
+msgid ""
+"All selected plugins are disabled in Plasma Search. The launcher then "
+"searches with all plugins enabled there."
+msgstr ""
+"Alle valgte tillegg er slått av i Plasma-søk. Programstarteren søker da med "
+"alle tillegg som er slått på der."
+
+#: package/contents/ui/ConfigSearch.qml:214
+msgctxt "@info:status search plugin"
+msgid "Not installed"
+msgstr "Ikke installert"

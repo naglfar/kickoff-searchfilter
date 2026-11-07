@@ -1,0 +1,54 @@
+# Chinese translations for kickoff-searchfilter package
+# kickoff-searchfilter 软件包的简体中文翻译.
+# Copyright (C) 2026 THE kickoff-searchfilter'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the kickoff-searchfilter package.
+#
+# "Not installed" is taken from the translation of KDE Discover.
+# The option and info texts were translated without a native speaker's review, using KDE's terms for "Plasma Search" and "plugin"; corrections are welcome.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kickoff-searchfilter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-07 07:31+0100\n"
+"PO-Revision-Date: 2026-11-07 07:31+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: package/contents/ui/ConfigSearch.qml:119
+msgctxt "@option:radio"
+msgid "Use the plugins and order from Plasma Search"
+msgstr "使用 Plasma 搜索中的插件和顺序"
+
+#: package/contents/ui/ConfigSearch.qml:126
+msgctxt "@option:radio"
+msgid "Use only the selected plugins, in this order"
+msgstr "仅按此顺序使用选中的插件"
+
+#: package/contents/ui/ConfigSearch.qml:136
+msgctxt "@info"
+msgid ""
+"Results of the first plugin are shown first. Plugins disabled in Plasma "
+"Search are not used, even when selected here. The settings of each plugin "
+"apply everywhere."
+msgstr ""
+"第一个插件的结果最先显示。在 Plasma 搜索中禁用的插件即使在此处选中也不会被使"
+"用。各插件的设置在所有位置均生效。"
+
+#: package/contents/ui/ConfigSearch.qml:143
+msgctxt "@info"
+msgid ""
+"All selected plugins are disabled in Plasma Search. The launcher then "
+"searches with all plugins enabled there."
+msgstr ""
+"所有选中的插件均已在 Plasma 搜索中禁用。此时启动器将使用 Plasma 搜索中启用的"
+"全部插件进行搜索。"
+
+#: package/contents/ui/ConfigSearch.qml:214
+msgctxt "@info:status search plugin"
+msgid "Not installed"
+msgstr "未安装"

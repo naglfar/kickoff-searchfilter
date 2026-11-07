@@ -1,0 +1,56 @@
+# Spanish translations for kickoff-searchfilter package.
+# Copyright (C) 2026 THE kickoff-searchfilter'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the kickoff-searchfilter package.
+#
+# "Not installed" is taken from the translation of KDE Discover.
+# The option and info texts were translated without a native speaker's review, using KDE's terms for "Plasma Search" and "plugin"; corrections are welcome.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kickoff-searchfilter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-07 07:31+0100\n"
+"PO-Revision-Date: 2026-11-07 07:31+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: package/contents/ui/ConfigSearch.qml:119
+msgctxt "@option:radio"
+msgid "Use the plugins and order from Plasma Search"
+msgstr "Usar los complementos y el orden de la Búsqueda de Plasma"
+
+#: package/contents/ui/ConfigSearch.qml:126
+msgctxt "@option:radio"
+msgid "Use only the selected plugins, in this order"
+msgstr "Usar solo los complementos seleccionados, en este orden"
+
+#: package/contents/ui/ConfigSearch.qml:136
+msgctxt "@info"
+msgid ""
+"Results of the first plugin are shown first. Plugins disabled in Plasma "
+"Search are not used, even when selected here. The settings of each plugin "
+"apply everywhere."
+msgstr ""
+"Los resultados del primer complemento se muestran primero. Los complementos "
+"desactivados en la Búsqueda de Plasma no se usan, aunque estén seleccionados "
+"aquí. La configuración de cada complemento se aplica en todas partes."
+
+#: package/contents/ui/ConfigSearch.qml:143
+msgctxt "@info"
+msgid ""
+"All selected plugins are disabled in Plasma Search. The launcher then "
+"searches with all plugins enabled there."
+msgstr ""
+"Todos los complementos seleccionados están desactivados en la Búsqueda de "
+"Plasma. El lanzador buscará entonces con todos los complementos activados "
+"allí."
+
+#: package/contents/ui/ConfigSearch.qml:214
+msgctxt "@info:status search plugin"
+msgid "Not installed"
+msgstr "No instalado"
