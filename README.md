@@ -24,8 +24,8 @@ KRunner, Overview and other launchers keep using the Plasma Search settings. Plu
 
 | Plasma | Status |
 |---|---|
-| 6.8.2 | tested in an isolated session (virtual KWin, separate config) |
-| 6.7 | not tested; the kicker APIs used are the same as in 6.8.2 |
+| 6.8.2 | tested on development machine and daily use |
+| 6.7.4 | active testing in daily use |
 | 6.6 | works on Kubuntu 26.04 (Plasma 6.6, KDE Frameworks 6.24); oldest supported version |
 | 6.3 | does not work: the Kickoff code from 6.8 and the search settings need newer kicker and Kirigami APIs |
 
