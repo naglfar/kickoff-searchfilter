@@ -96,7 +96,11 @@ PlasmoidItem {
 
         // The search model is created on the first query, before the query starts
         onQueryChanged: kickoff.applySearchOrder()
+        onQueryingChanged: if (!querying) kickoff.restoreGlobalOrder()
     }
+
+    // Whether the current search model carries the own order
+    property bool searchOrderApplied: false
 
     // With an own plugin selection, its order replaces the favorites from Plasma Search.
     // RunnerModel has no property for this, so set it on its search model directly and
@@ -104,10 +108,32 @@ PlasmoidItem {
     function applySearchOrder() {
         const order = Plasmoid.configuration.searchRunners;
         const model = runnerModel.modelForRow(0);
-        if (order.length === 0 || !model || String(model.favoriteIds) === String(order)) {
+        if (order.length === 0 || !model) {
             return;
         }
-        model.favoriteIds = order;
+        searchOrderApplied = true;
+        if (String(model.favoriteIds) !== String(order)) {
+            model.favoriteIds = order;
+        }
+    }
+    // Back to the Plasma Search settings: RunnerModel only reads the global favorites
+    // when creating its search model or when they change, so have it create a new one
+    function restoreGlobalOrder() {
+        if (!searchOrderApplied || Plasmoid.configuration.searchRunners.length > 0) {
+            return;
+        }
+        if (runnerModel.count === 0) {
+            // No search model; the next one gets the global favorites anyway
+            searchOrderApplied = false;
+            return;
+        }
+        if (runnerModel.querying) {
+            // Plasma 6.7 loses track of running queries when the models are recreated; retried when done
+            return;
+        }
+        searchOrderApplied = false;
+        runnerModel.mergeResults = false;
+        runnerModel.mergeResults = true;
     }
     Connections {
         target: Plasmoid.configuration
@@ -117,11 +143,8 @@ PlasmoidItem {
             }
             if (value.length > 0) {
                 kickoff.applySearchOrder();
-            } else if (kickoff.runnerModel.count > 0) {
-                // Back to the Plasma Search settings: RunnerModel only reads the global favorites
-                // when creating its search model or when they change, so have it create a new one
-                kickoff.runnerModel.mergeResults = false;
-                kickoff.runnerModel.mergeResults = true;
+            } else {
+                kickoff.restoreGlobalOrder();
             }
         }
     }
