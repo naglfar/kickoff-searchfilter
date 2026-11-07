@@ -2,6 +2,7 @@
 AbstractKickoffItemDelegate 1.0 AbstractKickoffItemDelegate.qml
 singleton ActionMenu 1.0 ActionMenu.qml
 ApplicationsPage 1.0 ApplicationsPage.qml
+Badge 1.0 Badge.qml
 BasePage 1.0 BasePage.qml
 ConfigGeneral 1.0 ConfigGeneral.qml
 ConfigSearch 1.0 ConfigSearch.qml

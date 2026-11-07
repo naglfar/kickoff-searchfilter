@@ -25,7 +25,11 @@ KRunner, Overview and other launchers keep using the Plasma Search settings. Plu
 | Plasma | Status |
 |---|---|
 | 6.8.2 | tested in an isolated session (virtual KWin, separate config) |
-| 6.7 | not tested; the kicker APIs used are the same as in 6.8.2, and the Kickoff code from 6.8 uses nothing that 6.7 lacks |
+| 6.7 | not tested; the kicker APIs used are the same as in 6.8.2 |
+| 6.6 | not tested yet; needs at least the runner model of Plasma 6.6 |
+| 6.3 | does not work: the Kickoff code from 6.8 and the search settings need newer kicker and Kirigami APIs |
+
+Kickoff 6.8 shows the "New!" badge of newly installed applications with `Kirigami.Badge`, which needs KDE Frameworks 6.26. The fork uses Kickoff's own badge from before Plasma 6.7 instead (`Badge.qml`), so that it also runs with older Frameworks, such as 6.24 on Kubuntu 26.04.
 
 ## Install
 
@@ -86,7 +90,7 @@ Update to a new Plasma version, for example 6.9.0, from a plasma-desktop checkou
    git merge upstream
    ```
 
-3. Resolve conflicts, if any. They can only appear where KDE changed lines that the fork changed too: the runner model block in `main.qml`, `main.xml`, `config.qml` or `qmldir`.
+3. Resolve conflicts, if any. They can only appear where KDE changed lines that the fork changed too: the runner model block in `main.qml`, `main.xml`, `config.qml`, `qmldir`, or the badge in `KickoffGridDelegate.qml` and `KickoffListDelegate.qml`.
 4. Test against that Plasma version, raise `Version` in `metadata.json`, then run `./build.sh`.
 
 To try an update without changing `upstream`, branch it first:

@@ -55,9 +55,8 @@ AbstractKickoffItemDelegate {
                 visible: active
                 active: (root.model?.isNewlyInstalled ?? false) && !root.removalPlaceholderActive
 
-                sourceComponent: Kirigami.Badge {
+                sourceComponent: Badge {
                     text: i18ndc("plasma_applet_org.kde.plasma.kickoff", "@label Newly-installed app, badge, keep short", "New!")
-                    type: Kirigami.Badge.Type.Positive
                     Accessible.name: i18ndc("plasma_applet_org.kde.plasma.kickoff", "@label Accessible name for badge", "Newly-installed application")
                 }
             }
