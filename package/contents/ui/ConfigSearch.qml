@@ -153,11 +153,17 @@ KCM.ScrollViewKCM {
         // Rows are not selectable; the checkboxes and buttons are the controls
         currentIndex: -1
 
+        // Strings from Kirigami and other KDE catalogs, so they are translated where Plasma is
+        Kirigami.LoadingPlaceholder {
+            anchors.centerIn: parent
+            visible: !root.runnersLoaded
+        }
+
         Kirigami.PlaceholderMessage {
             anchors.centerIn: parent
             width: parent.width - Kirigami.Units.gridUnit * 4
-            visible: runnerList.count === 0
-            text: root.runnersLoaded ? i18nc("@info", "No search plugins found") : i18nc("@info", "Loading search plugins…")
+            visible: root.runnersLoaded && runnerList.count === 0
+            text: i18nd("kcmutils6", "No plugins found")
         }
 
         delegate: QQC2.ItemDelegate {
@@ -195,13 +201,18 @@ KCM.ScrollViewKCM {
                     }
                     QQC2.Label {
                         Layout.fillWidth: true
-                        text: !delegate.modelData.installed ? i18nc("@info %1 is a plugin id", "%1 (not installed)", delegate.modelData.id)
-                            : delegate.modelData.disabled ? i18nc("@info %1 is a plugin id", "%1 (disabled in Plasma Search)", delegate.modelData.id)
-                            : delegate.modelData.id
+                        text: delegate.modelData.id
                         elide: Text.ElideRight
                         font: Kirigami.Theme.smallFont
                         opacity: 0.7
                     }
+                }
+
+                // Status as a label of its own; "Disabled" means switched off in Plasma Search and uses the translation from the Accessibility settings
+                QQC2.Label {
+                    visible: !delegate.modelData.installed || delegate.modelData.disabled
+                    text: !delegate.modelData.installed ? i18nc("@info:status search plugin", "Not installed") : i18ndc("kcm_access", "@item:inlistbox", "Disabled")
+                    color: delegate.modelData.selected ? Kirigami.Theme.neutralTextColor : Kirigami.Theme.disabledTextColor
                 }
 
                 QQC2.ToolButton {
@@ -209,8 +220,8 @@ KCM.ScrollViewKCM {
                     enabled: delegate.index > 0
                     icon.name: "arrow-up"
                     display: QQC2.AbstractButton.IconOnly
-                    text: i18nc("@action:button", "Move Up")
-                    Accessible.name: i18nc("@action:button %1 is a plugin name", "Move %1 up", delegate.modelData.name)
+                    text: i18ndc("kcm_keyboard", "@action:button", "Move Up")
+                    Accessible.description: delegate.modelData.name
                     QQC2.ToolTip.text: text
                     QQC2.ToolTip.visible: hovered
                     QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
@@ -222,8 +233,8 @@ KCM.ScrollViewKCM {
                     enabled: delegate.index < root.cfg_searchRunners.length - 1
                     icon.name: "arrow-down"
                     display: QQC2.AbstractButton.IconOnly
-                    text: i18nc("@action:button", "Move Down")
-                    Accessible.name: i18nc("@action:button %1 is a plugin name", "Move %1 down", delegate.modelData.name)
+                    text: i18ndc("kcm_keyboard", "@action:button", "Move Down")
+                    Accessible.description: delegate.modelData.name
                     QQC2.ToolTip.text: text
                     QQC2.ToolTip.visible: hovered
                     QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
@@ -237,7 +248,7 @@ KCM.ScrollViewKCM {
         QQC2.Button {
             enabled: KConfig.KAuthorized.authorizeControlModule("kcm_plasmasearch")
             icon.name: "settings-configure"
-            text: i18nc("@action:button opens the Plasma Search settings", "Configure Search Plugins…")
+            text: i18ndc("plasma_applet_org.kde.plasma.kickoff", "@action:button opens plasmasearch kcm", "Configure Search Plugins…")
             onClicked: KCM.KCMLauncher.openSystemSettings("kcm_plasmasearch")
         }
     }

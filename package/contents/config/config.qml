@@ -15,7 +15,8 @@ PlasmaConfig.ConfigModel {
         source: "ConfigGeneral.qml"
     }
     PlasmaConfig.ConfigCategory {
-        name: i18nc("@title:group for configuration dialog page", "Search")
+        // From libplasma's catalog, so it's translated where Plasma is
+        name: i18nd("libplasma6", "Search")
         icon: "search"
         source: "ConfigSearch.qml"
     }
