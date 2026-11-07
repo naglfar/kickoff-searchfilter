@@ -59,6 +59,16 @@ kpackagetool6 -t Plasma/Applet -r de.naglfar.kickoff-searchfilter
 ./build.sh
 ```
 
+## Release on GitHub
+
+Raise `Version` in `package/metadata.json`, commit and push, then:
+
+```bash
+./release.sh
+```
+
+It needs the [GitHub CLI](https://cli.github.com/) (`gh auth login` once). The script stops if there are uncommitted or unpushed changes, or if the tag `v<version>` exists already. Then it builds the `.plasmoid` and creates a draft release for the current commit, with the file attached and notes generated from the commits. Check the draft on GitHub and publish it there; that creates the tag. Upload the same `.plasmoid` to the KDE Store by hand.
+
 ## Updating to a new Kickoff version
 
 The fork is a copy without a connection to plasma-desktop. New Kickoff versions come in through the `upstream` branch.
