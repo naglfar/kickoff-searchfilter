@@ -58,7 +58,7 @@ PlasmoidItem {
         flat: true // have categories, but no subcategories
         sorted: Plasmoid.configuration.alphaSort
         showSeparators: !sorted && Plasmoid.configuration.applicationsDisplay != 0
-        showRootSeparator: true
+        // showRootSeparator: true is the default since Plasma 6.7, and Plasma 6.6 lacks the property
         showTopLevelItems: true
 
         showAllApps: true
