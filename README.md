@@ -26,7 +26,7 @@ KRunner, Overview and other launchers keep using the Plasma Search settings. Plu
 |---|---|
 | 6.8.2 | tested in an isolated session (virtual KWin, separate config) |
 | 6.7 | not tested; the kicker APIs used are the same as in 6.8.2 |
-| 6.6 | not tested yet; needs at least the runner model of Plasma 6.6 |
+| 6.6 | works on Kubuntu 26.04 (Plasma 6.6, KDE Frameworks 6.24); oldest supported version |
 | 6.3 | does not work: the Kickoff code from 6.8 and the search settings need newer kicker and Kirigami APIs |
 
 On Plasma 6.6 the separator between All Applications and the categories is hidden in grid view and when sorted alphabetically, as Kickoff 6.8 relies on `showRootSeparator` from Plasma 6.7 to keep it.
@@ -45,7 +45,7 @@ Update after changes:
 kpackagetool6 -t Plasma/Applet -u package
 ```
 
-Then restart plasmashell or log out and back in, add *Kickoff Custom Search* to a panel, or use *Show Alternatives…* on the existing Application Launcher.
+Then restart plasmashell or log out and back in; until then plasmashell keeps using the loaded version, also after an update. After that, add *Kickoff Custom Search* to a panel, or use *Show Alternatives…* on the existing Application Launcher.
 
 Remove:
 
