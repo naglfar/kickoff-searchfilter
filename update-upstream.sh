@@ -33,7 +33,7 @@ if git -C "$work" diff --cached --quiet; then
     echo "$branch already matches $ref ($commit)"
     exit 0
 fi
-git -C "$work" commit -q -m "Import Kickoff from plasma-desktop $ref ($commit)
+git -C "$work" commit -q -m "chore(upstream): import Kickoff from plasma-desktop $ref ($commit)
 
 Unmodified applets/kickoff, converted by tools/convert-kickoff.py into the
 package layout."

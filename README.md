@@ -89,7 +89,7 @@ Update to a new Plasma version, for example 6.9.0, from a plasma-desktop checkou
 2. Merge it.
 
    ```bash
-   git merge upstream
+   git merge upstream -m "chore(upstream): merge Kickoff v6.9.0"
    ```
 
 3. Resolve conflicts, if any. They can only appear where KDE changed lines that the fork changed too: the runner model block in `main.qml`, `main.xml`, `config.qml`, `qmldir`, the root model settings in `main.qml`, or the badge in `KickoffGridDelegate.qml` and `KickoffListDelegate.qml`.
