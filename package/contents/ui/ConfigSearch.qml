@@ -24,6 +24,7 @@ KCM.ScrollViewKCM {
     readonly property bool customSelection: cfg_searchRunners.length > 0
     // [{id, name}] of the installed KRunner plugins, sorted by name
     property var installedRunners: []
+    // Set once the plugins and their switches are both read, so the list doesn't show intermediate states
     property bool runnersLoaded: false
     // Plugins switched off in Plasma Search; plugins that are off by default without being switched off are not known here
     property var disabledRunners: []
@@ -84,7 +85,6 @@ KCM.ScrollViewKCM {
             }
             runners.sort((a, b) => a.name.localeCompare(b.name));
             root.installedRunners = runners;
-            root.runnersLoaded = true;
             disconnectSource(source);
             enabledStates.read(runners.map(r => r.id));
         }
@@ -100,6 +100,8 @@ KCM.ScrollViewKCM {
             const safeIds = ids.filter(id => /^[A-Za-z0-9_.-]+$/.test(id));
             if (safeIds.length > 0) {
                 connectSource(`for id in ${safeIds.join(" ")}; do printf '%s=%s\\n' "$id" "$(kreadconfig6 --file krunnerrc --group Plugins --key "\${id}Enabled")"; done`);
+            } else {
+                root.runnersLoaded = true;
             }
         }
 
@@ -107,6 +109,7 @@ KCM.ScrollViewKCM {
             root.disabledRunners = String(data["stdout"]).split("\n")
                 .filter(line => line.endsWith("=false"))
                 .map(line => line.slice(0, -"=false".length));
+            root.runnersLoaded = true;
             disconnectSource(source);
         }
     }
@@ -148,7 +151,8 @@ KCM.ScrollViewKCM {
         id: runnerList
 
         enabled: root.customSelection
-        model: root.rows
+        // Until then the loading placeholder shows instead of selected plugins marked as not installed
+        model: root.runnersLoaded ? root.rows : []
         reuseItems: true
         // Rows are not selectable; the checkboxes and buttons are the controls
         currentIndex: -1
